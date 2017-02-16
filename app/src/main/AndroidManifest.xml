@@ -18,7 +18,10 @@
         <activity android:name=".AboutActivity"
             android:label="@string/about_label"
             android:theme="@style/Animation.AppCompat.Dialog">
-
+        </activity>
+        <activity android:name=".GridActivity"
+                  android:theme="@style/AppTheme"
+                  android:label="@string/grid_title">
         </activity>
     </application>
 

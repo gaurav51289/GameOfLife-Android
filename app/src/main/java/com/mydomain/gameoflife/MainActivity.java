@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnAbout;
+    Button btnAbout, btnNewGame;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +17,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnAbout = (Button) findViewById(R.id.btnAbout);
+        btnNewGame = (Button) findViewById(R.id.btnNew);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.btnAbout:
-                        Intent i = new Intent(v.getContext(), AboutActivity.class);
-                        startActivity(i);
+                        Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
+                        startActivity(aboutIntent);
+                        break;
+                    case R.id.btnNew:
+                        Intent gridIntent = new Intent(v.getContext(), GridActivity.class);
+                        startActivity(gridIntent);
                         break;
                 }
             }
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnAbout.setOnClickListener(listener);
+        btnNewGame.setOnClickListener(listener);
 
     }
 

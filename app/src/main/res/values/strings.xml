@@ -9,4 +9,8 @@
 <i>cellular automaton</i> devised by the British mathematician
 John Horton Conway in 1970. It is the best-known example
 of a cellular automaton.</string>
+    <string name="grid_title">Game of Life Grid</string>
+    <string name="settings_label">Settings...</string>
+    <string name="settings_title">Game of Life Settings</string>
+    <string name="settings_shortcut">s</string>
 </resources>
