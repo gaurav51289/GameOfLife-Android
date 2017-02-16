@@ -2,24 +2,26 @@ package com.mydomain.gameoflife;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 
 public class GridActivity extends Activity {
+
+    GridView mGridView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grid_layout);
+
+        mGridView = (GridView) findViewById(R.id.grid_view);
+        mGridView.setViewState(GridView.RUNNING);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
+    protected void onPause(){
+        super.onPause();
+        mGridView.setViewState(GridView.PAUSE);
     }
 
-    
+
 }
