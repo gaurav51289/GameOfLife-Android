@@ -16,7 +16,7 @@ public class GridView extends View {
     public static final int PAUSE = 0;
     public static final int RUNNING = 1;
 
-    private long movementDelay = 250;
+    private long movementDelay = 25;
     private RefreshHandler mRefreshHandler = new RefreshHandler();
     private GameAlgo mGameAlgo;
 

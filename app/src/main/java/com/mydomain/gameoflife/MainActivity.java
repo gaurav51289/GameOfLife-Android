@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
+                switch (v.getId()) {
                     case R.id.btnAbout:
                         Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
                         startActivity(aboutIntent);
@@ -40,6 +40,4 @@ public class MainActivity extends AppCompatActivity {
         btnNewGame.setOnClickListener(listener);
 
     }
-
-
 }
