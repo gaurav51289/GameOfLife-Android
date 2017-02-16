@@ -43,9 +43,9 @@ public class GameAlgo {
 
     public void createNextGeneration() {
         int neighbours;
-        int minimum = 2; //Integer.parseInt(PreferencesActivity.getMinimumVariable(this._context));
-        int maximum = 3; //Integer.parseInt(PreferencesActivity.getMaximumVariable(this._context));
-        int spawn = 3; //Integer.parseInt(PreferencesActivity.getSpawnVariable(this._context));
+        int minimum = 2;
+        int maximum = 3;
+        int spawn = 3;
 
         int[][] nextGridArray = new int[HEIGHT][WIDTH];
 
@@ -64,6 +64,8 @@ public class GameAlgo {
                 }
             }
         }
+
+        //Update the Grid Array with new Grid Array
         for (int h = 0; h < HEIGHT; h++) {
             for (int w = 0; w < WIDTH; w++) {
                 gridArray[h][w] = nextGridArray[h][w];

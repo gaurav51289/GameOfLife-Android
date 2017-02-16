@@ -1,7 +1,6 @@
 package com.mydomain.gameoflife;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -16,7 +15,7 @@ public class GridView extends View {
     public static final int PAUSE = 0;
     public static final int RUNNING = 1;
 
-    private long movementDelay = 25;
+    private long movementDelay = 200;
     private RefreshHandler mRefreshHandler = new RefreshHandler();
     private GameAlgo mGameAlgo;
 
@@ -53,7 +52,7 @@ public class GridView extends View {
 
     public void setViewState(int viewState) {
         if(viewState == RUNNING){
-            updateView();
+            updateGridView();
             return;
         }
 
@@ -66,7 +65,7 @@ public class GridView extends View {
         setFocusable(true);
     }
 
-    private void updateView() {
+    private void updateGridView() {
         mGameAlgo.createNextGeneration();
         mRefreshHandler.nextRefresh(movementDelay);
     }
@@ -75,7 +74,7 @@ public class GridView extends View {
 
         @Override
         public void handleMessage(Message message){
-            GridView.this.updateView();
+            GridView.this.updateGridView();
             GridView.this.invalidate();
         }
 
