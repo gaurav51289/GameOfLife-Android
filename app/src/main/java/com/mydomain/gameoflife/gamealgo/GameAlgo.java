@@ -5,7 +5,7 @@ import android.content.Context;
 
 public class GameAlgo {
 
-    public static final int CELL = 64;
+    public static final int CELL = 32;
     public static final int WIDTH = 1440 / CELL;
     public static final int HEIGHT = 2560 / CELL;
 
@@ -20,6 +20,10 @@ public class GameAlgo {
 
     public static int[][] getGridArray() {
         return gridArray;
+    }
+
+    public static void setGridArray(int h, int w){
+        gridArray[h][w] = 1;
     }
 
     private void initGrid() {

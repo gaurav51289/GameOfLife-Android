@@ -7,20 +7,25 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.mydomain.gameoflife.gamealgo.GameAlgo;
 import com.mydomain.gameoflife.R;
 
 
-public class CustomGridView extends View {
+public class CustomGridView extends View implements View.OnTouchListener {
 
     public static final int PAUSE = 0;
     public static final int RUNNING = 1;
 
-    private long movementDelay = 200;
+    private long movementDelay = 250;
     private RefreshHandler mRefreshHandler = new RefreshHandler();
     private GameAlgo mGameAlgo;
+
+    private float touchX, touchY;
+    private int cellSize = GameAlgo.CELL;
+    private int cellRadius = (cellSize/2) - 2;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -39,6 +44,8 @@ public class CustomGridView extends View {
 
         canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
 
+        //canvas.drawCircle(touchX, touchY, cellRadius, paintCell);
+
         for (int h = 0; h < GameAlgo.HEIGHT; h++) {
             for (int w = 0; w < GameAlgo.WIDTH; w++) {
                 if (GameAlgo.getGridArray()[h][w] != 0) {
@@ -49,15 +56,42 @@ public class CustomGridView extends View {
 //                            (h * GameAlgo.CELL) + (GameAlgo.CELL -1),
 //                            paintCell);
 
-                    int cellSize = GameAlgo.CELL;
+
                     float horCenter = (w * cellSize) + (cellSize/2) ;
                     float verCenter = (h * cellSize) + (cellSize/2);
-                    int cellRadius = (cellSize/2) - 2;
+
                     canvas.drawCircle(horCenter, verCenter, cellRadius, paintCell);
 
                 }
             }
         }
+
+        invalidate();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+            //getting touch co-ordinates
+            touchX = event.getX();
+            touchY = event.getY();
+
+            //finding the center of the cell touched
+            touchX = (int) (((int)(touchX/cellSize) + 0.5) * cellSize);
+            touchY = (int) (((int)(touchY/cellSize) + 0.5) * cellSize);
+
+            //calculating the grid array index
+            int gridArrX = (int) (touchX/cellSize);
+            int gridArrY = (int) (touchY/cellSize);
+
+            //setting newly touched cell in the grid array
+            GameAlgo.setGridArray(gridArrY, gridArrX);
+
+        }
+
+        return true;
     }
 
     public void setViewState(int viewState) {
@@ -79,6 +113,8 @@ public class CustomGridView extends View {
         mGameAlgo.createNextGrid();
         mRefreshHandler.nextRefresh(movementDelay);
     }
+
+
 
     class RefreshHandler extends Handler {
 

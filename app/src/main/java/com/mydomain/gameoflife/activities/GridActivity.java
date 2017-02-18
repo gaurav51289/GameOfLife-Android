@@ -18,6 +18,7 @@ public class GridActivity extends Activity {
 
         mCustomGridView = (CustomGridView) findViewById(R.id.grid_view);
         mCustomGridView.setViewState(CustomGridView.RUNNING);
+        mCustomGridView.setOnTouchListener(mCustomGridView);
     }
 
     @Override
