@@ -5,9 +5,9 @@ import android.content.Context;
 
 public class GameAlgo {
 
-    public static final int CELL_SIZE = 16;
-    public static final int WIDTH = 1080 / CELL_SIZE;
-    public static final int HEIGHT = 1920 / CELL_SIZE;
+    public static final int CELL = 64;
+    public static final int WIDTH = 1440 / CELL;
+    public static final int HEIGHT = 2560 / CELL;
 
     private static final int[][] gridArray = new int[HEIGHT][WIDTH];
 

@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="background">#596f87</color>
     <color name="cell">#edf504</color>
+    <color name="btnBG">#a0202020</color>
 </resources>

@@ -42,12 +42,19 @@ public class CustomGridView extends View {
         for (int h = 0; h < GameAlgo.HEIGHT; h++) {
             for (int w = 0; w < GameAlgo.WIDTH; w++) {
                 if (GameAlgo.getGridArray()[h][w] != 0) {
-                    canvas.drawRect(
-                            w * GameAlgo.CELL_SIZE,
-                            h * GameAlgo.CELL_SIZE,
-                            (w * GameAlgo.CELL_SIZE) + (GameAlgo.CELL_SIZE -1),
-                            (h * GameAlgo.CELL_SIZE) + (GameAlgo.CELL_SIZE -1),
-                            paintCell);
+//                    canvas.drawRect(
+//                            w * GameAlgo.CELL,
+//                            h * GameAlgo.CELL,
+//                            (w * GameAlgo.CELL) + (GameAlgo.CELL -1),
+//                            (h * GameAlgo.CELL) + (GameAlgo.CELL -1),
+//                            paintCell);
+
+                    int cellSize = GameAlgo.CELL;
+                    float horCenter = (w * cellSize) + (cellSize/2) ;
+                    float verCenter = (h * cellSize) + (cellSize/2);
+                    int cellRadius = (cellSize/2) - 2;
+                    canvas.drawCircle(horCenter, verCenter, cellRadius, paintCell);
+
                 }
             }
         }

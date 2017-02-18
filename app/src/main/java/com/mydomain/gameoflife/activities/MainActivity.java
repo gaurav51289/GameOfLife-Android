@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnAbout:
-                        Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
+                        //Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
+                        Intent aboutIntent = new Intent(v.getContext(), TouchActivity.class);
                         startActivity(aboutIntent);
                         break;
                     case R.id.btnNew:
