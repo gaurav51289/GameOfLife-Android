@@ -1,10 +1,14 @@
-package com.mydomain.gameoflife;
+package com.mydomain.gameoflife.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.mydomain.gameoflife.R;
+import com.mydomain.gameoflife.activities.AboutActivity;
+import com.mydomain.gameoflife.activities.GridActivity;
 
 public class MainActivity extends AppCompatActivity {
 
