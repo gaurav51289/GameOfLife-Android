@@ -12,12 +12,11 @@ import android.view.View;
 
 import com.mydomain.gameoflife.gamealgo.GameAlgo;
 import com.mydomain.gameoflife.R;
+import com.mydomain.gameoflife.gamealgo.GameState;
 
 
 public class CustomGridView extends View implements View.OnTouchListener {
 
-    public static final int PAUSE = 0;
-    public static final int RUNNING = 1;
 
     private long movementDelay = 250;
     private RefreshHandler mRefreshHandler = new RefreshHandler();
@@ -32,6 +31,17 @@ public class CustomGridView extends View implements View.OnTouchListener {
         mGameAlgo = new GameAlgo(context);
         initGridView();
     }
+
+
+    private void initGridView(){
+        setFocusable(true);
+    }
+
+    public void updateGridView() {
+        mGameAlgo.createNextGrid();
+        mRefreshHandler.nextRefresh(movementDelay);
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -49,13 +59,6 @@ public class CustomGridView extends View implements View.OnTouchListener {
         for (int h = 0; h < GameAlgo.HEIGHT; h++) {
             for (int w = 0; w < GameAlgo.WIDTH; w++) {
                 if (GameAlgo.getGridArray()[h][w] != 0) {
-//                    canvas.drawRect(
-//                            w * GameAlgo.CELL,
-//                            h * GameAlgo.CELL,
-//                            (w * GameAlgo.CELL) + (GameAlgo.CELL -1),
-//                            (h * GameAlgo.CELL) + (GameAlgo.CELL -1),
-//                            paintCell);
-
 
                     float horCenter = (w * cellSize) + (cellSize/2) ;
                     float verCenter = (h * cellSize) + (cellSize/2);
@@ -94,33 +97,18 @@ public class CustomGridView extends View implements View.OnTouchListener {
         return true;
     }
 
-    public void setViewState(int viewState) {
-        if(viewState == RUNNING){
-            updateGridView();
-            return;
-        }
-
-        if(viewState == PAUSE){
-            //TODO : to implement
-        }
-    }
-
-    private void initGridView(){
-        setFocusable(true);
-    }
-
-    private void updateGridView() {
-        mGameAlgo.createNextGrid();
-        mRefreshHandler.nextRefresh(movementDelay);
-    }
-
 
 
     class RefreshHandler extends Handler {
 
         @Override
         public void handleMessage(Message message){
-            CustomGridView.this.updateGridView();
+
+            GameState gs = GameState.getInstance();
+
+            if(gs.getState() == GameState.PLAY) {
+                CustomGridView.this.updateGridView();
+            }
             CustomGridView.this.invalidate();
         }
 
