@@ -2,12 +2,9 @@ package com.mydomain.gameoflife.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.mydomain.gameoflife.R;
-
-/**
- * Created by gauravchodwadia on 2/11/17.
- */
 
 public class AboutActivity extends Activity {
 
@@ -15,5 +12,10 @@ public class AboutActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_layout);
+
+        //Hide the Status Bar
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 }

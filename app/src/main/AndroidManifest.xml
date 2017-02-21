@@ -19,10 +19,6 @@
             android:label="@string/about_label"
             android:theme="@style/Animation.AppCompat.Dialog">
         </activity>
-        <activity android:name=".activities.TouchActivity"
-                  android:label="@string/about_label"
-                  android:theme="@style/Animation.AppCompat.Dialog">
-        </activity>
         <activity android:name=".activities.GridActivity"
                   android:theme="@style/AppTheme"
                   android:label="@string/grid_title">

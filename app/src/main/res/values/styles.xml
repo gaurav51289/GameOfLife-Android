@@ -8,19 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="button">
+    <style name="Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
         <item name="android:background">@color/btnBG</item>
     </style>
 
-    <style name="toolbar">
+    <style name="Toolbar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/alertText</item>
+        <item name="android:colorBackground">@color/alertBG</item>
+
     </style>
 
 </resources>

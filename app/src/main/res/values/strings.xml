@@ -13,4 +13,8 @@ of a cellular automaton.</string>
     <string name="settings_label">Settings...</string>
     <string name="settings_title">Game of Life Settings</string>
     <string name="settings_shortcut">s</string>
+    <string name="reset_alert_title">Are you sure?</string>
+    <string name="reset_alert_message">This will clear the screen.</string>
+    <string name="yes_label">Yes</string>
+    <string name="no_label">No</string>
 </resources>

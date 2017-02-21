@@ -1,15 +1,20 @@
 package com.mydomain.gameoflife.gamealgo;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
 
 public class GameAlgo {
 
-    public static final int CELL = 32;
-    public static final int WIDTH = 1440 / CELL;
-    public static final int HEIGHT = 2560 / CELL;
+    public static final int C = 32;
 
-    private static final int[][] gridArray = new int[HEIGHT][WIDTH];
+    public static DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+    public static final int W = metrics.widthPixels / C;
+    public static final int H = metrics.heightPixels / C;
+
+    private static final boolean[][] gridArray = new boolean[H][W];
 
     private Context mContext;
 
@@ -18,60 +23,64 @@ public class GameAlgo {
         initGrid();
     }
 
-    public static int[][] getGridArray() {
+    public static boolean[][] getGridArray() {
         return gridArray;
     }
 
-    public static void setGridArray(int h, int w){
-        gridArray[h][w] = 1;
+    public static void setGridCell(int h, int w){
+        gridArray[h][w] = true;
     }
 
-    private void initGrid() {
+    public static void unsetGridCell(int h, int w){
+        gridArray[h][w] = false;
+    }
+
+    public void initGrid() {
 
         clearGrid();
 
-        gridArray[9][(WIDTH / 2) - 3] = 1;
-        gridArray[10][(WIDTH / 2) - 2] = 1;
-        gridArray[8][(WIDTH / 2) - 1] = 1;
-        gridArray[9][(WIDTH / 2) - 1] = 1;
-        gridArray[10][(WIDTH / 2) - 1] = 1;
+        gridArray[9][(W / 2) - 3] = true;
+        gridArray[10][(W / 2) - 2] = true;
+        gridArray[8][(W / 2) - 1] = true;
+        gridArray[9][(W / 2) - 1] = true;
+        gridArray[10][(W / 2) - 1] = true;
     }
 
-    private void clearGrid() {
-        for(int h = 0; h < HEIGHT; h++){
-            for(int w = 0; w < WIDTH; w++){
-                gridArray[h][w] = 0;
+    public void clearGrid() {
+        for(int h = 0; h < H; h++){
+            for(int w = 0; w < W; w++){
+                gridArray[h][w] = false;
             }
         }
     }
 
     public void createNextGrid() {
         int neighbours;
-        int minimum = 2;
-        int maximum = 3;
-        int spawn = 3;
+        int min = 2;
+        int max = 3;
+        int born = 3;
 
-        int[][] nextGridArray = new int[HEIGHT][WIDTH];
+        boolean[][] nextGridArray = new boolean[H][W];
 
-        for (int h = 0; h < HEIGHT; h++) {
-            for (int w = 0; w < WIDTH; w++) {
+        for (int h = 0; h < H; h++) {
+            for (int w = 0; w < W; w++) {
                 neighbours = getNeighbourCount(h, w);
 
-                if (gridArray[h][w] != 0) {
-                    if ((neighbours >= minimum) && (neighbours <= maximum)) {
-                        nextGridArray[h][w] = neighbours;
+                if (gridArray[h][w]) {
+                    if ((neighbours >= min) && (neighbours <= max)) {
+                        nextGridArray[h][w] = true;
                     }
                 } else {
-                    if (neighbours == spawn) {
-                        nextGridArray[h][w] = spawn;
+                    if (neighbours == born) {
+                        nextGridArray[h][w] = true;
                     }
                 }
             }
         }
 
         //Update the Grid Array with new Grid Array
-        for (int h = 0; h < HEIGHT; h++) {
-            for (int w = 0; w < WIDTH; w++) {
+        for (int h = 0; h < H; h++) {
+            for (int w = 0; w < W; w++) {
                 gridArray[h][w] = nextGridArray[h][w];
             }
         }
@@ -79,20 +88,19 @@ public class GameAlgo {
 
 
     private int getNeighbourCount(int y, int x) {
-        int total = 0;
-        if(gridArray[y][x] != 0){
-            total = -1;
+        int neighbourCount = 0;
+        if(gridArray[y][x]){
+            neighbourCount = -1;
         }else{
-            total = 0;
+            neighbourCount = 0;
         }
         for (int h = -1; h <= +1; h++) {
             for (int w = -1; w <= +1; w++) {
-                if (gridArray[(HEIGHT + (y + h)) % HEIGHT][(WIDTH + (x + w))
-                        % WIDTH] != 0) {
-                    total++;
+                if (gridArray[(H + (y + h)) % H][(W + (x + w)) % W]) {
+                    neighbourCount++;
                 }
             }
         }
-        return total;
+        return neighbourCount;
     }
 }

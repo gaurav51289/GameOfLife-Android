@@ -23,7 +23,7 @@ public class CustomGridView extends View implements View.OnTouchListener {
     private GameAlgo mGameAlgo;
 
     private float touchX, touchY;
-    private int cellSize = GameAlgo.CELL;
+    private int cellSize = GameAlgo.C;
     private int cellRadius = (cellSize/2) - 2;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
@@ -42,6 +42,12 @@ public class CustomGridView extends View implements View.OnTouchListener {
         mRefreshHandler.nextRefresh(movementDelay);
     }
 
+    public void resetGridView(){
+
+        mGameAlgo.clearGrid();
+
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -54,11 +60,10 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
         canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
 
-        //canvas.drawCircle(touchX, touchY, cellRadius, paintCell);
 
-        for (int h = 0; h < GameAlgo.HEIGHT; h++) {
-            for (int w = 0; w < GameAlgo.WIDTH; w++) {
-                if (GameAlgo.getGridArray()[h][w] != 0) {
+        for (int h = 0; h < GameAlgo.H; h++) {
+            for (int w = 0; w < GameAlgo.W; w++) {
+                if (GameAlgo.getGridArray()[h][w]) {
 
                     float horCenter = (w * cellSize) + (cellSize/2) ;
                     float verCenter = (h * cellSize) + (cellSize/2);
@@ -90,8 +95,12 @@ public class CustomGridView extends View implements View.OnTouchListener {
             int gridArrY = (int) (touchY/cellSize);
 
             //setting newly touched cell in the grid array
-            GameAlgo.setGridArray(gridArrY, gridArrX);
-
+            boolean currentCellState = GameAlgo.getGridArray()[gridArrY][gridArrX];
+            if(!currentCellState){
+                GameAlgo.setGridCell(gridArrY, gridArrX);
+            }else{
+                GameAlgo.unsetGridCell(gridArrY, gridArrX);
+            }
         }
 
         return true;

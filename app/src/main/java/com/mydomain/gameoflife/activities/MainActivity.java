@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Hide the Status Bar
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnNewGame = (Button) findViewById(R.id.btnNew);
 
@@ -28,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnAbout:
-                        //Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
-                        Intent aboutIntent = new Intent(v.getContext(), TouchActivity.class);
+                        Intent aboutIntent = new Intent(v.getContext(), AboutActivity.class);
                         startActivity(aboutIntent);
                         break;
                     case R.id.btnNew:
