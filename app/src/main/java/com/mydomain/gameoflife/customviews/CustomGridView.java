@@ -24,7 +24,7 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     private float touchX, touchY;
     private int cellSize = GameAlgo.C;
-    private int cellRadius = (cellSize/2) - 2;
+    private int cellRadius = (cellSize/2) - 1;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);

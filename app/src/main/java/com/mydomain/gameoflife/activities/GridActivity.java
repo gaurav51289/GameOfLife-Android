@@ -2,6 +2,7 @@ package com.mydomain.gameoflife.activities;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextThemeWrapper;
@@ -18,18 +19,15 @@ public class GridActivity extends Activity {
 
     CustomGridView mCustomGridView;
 
-    ImageButton btnPlay, btnPause, btnNext, btnReset;
+    ImageButton btnPlay, btnPause, btnNext, btnReset, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grid_layout);
 
-        //Hide the Status Bar
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
 
+        hideStatusBar();
         mCustomGridView = (CustomGridView) findViewById(R.id.grid_view);
         GameState.getInstance().setState(GameState.PAUSE);
         mCustomGridView.setOnTouchListener(mCustomGridView);
@@ -38,6 +36,7 @@ public class GridActivity extends Activity {
         btnPause = (ImageButton) findViewById(R.id.btnPause);
         btnNext = (ImageButton) findViewById(R.id.btnNext);
         btnReset = (ImageButton) findViewById(R.id.btnReset);
+        btnSettings = (ImageButton) findViewById(R.id.btnSettings);
 
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -60,6 +59,11 @@ public class GridActivity extends Activity {
                     case R.id.btnReset:
                         doReset();
                         break;
+
+                    case R.id.btnSettings:
+                        openSettings(v);
+                        break;
+
                 }
             }
         };
@@ -68,20 +72,55 @@ public class GridActivity extends Activity {
         btnPause.setOnClickListener(listener);
         btnNext.setOnClickListener(listener);
         btnReset.setOnClickListener(listener);
+        btnSettings.setOnClickListener(listener);
 
     }
+
 
     @Override
     protected void onPause(){
         super.onPause();
-        GameState.getInstance().setState(GameState.PAUSE);
+        doPause();
+
+//        String FILENAME = "gameoflife";
+//        boolean[][] boolArr = new boolean[2][2];
+//        boolArr[0][0] = true;
+//        boolArr[1][1] = true;
+//
+//        FileOutputStream fos = null;
+//        try {
+//            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+//            for(int i = 0; i < boolArr.length; i++){
+//                for(int j = 0; j < boolArr[0].length; j++){
+//                    fos.write(boolArr[i][j] ? 1 : 0);
+//                }
+//            }
+//            fos.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-//        GameState.getInstance().setState(GameState.PLAY);
-//        mCustomGridView.updateGridView();
+        mCustomGridView.updateGridView();
+
+//        String FILENAME = "gameoflife";
+//        FileInputStream fis;
+//
+//        try {
+//            fis = openFileInput(FILENAME);
+//            int content;
+//            while ((content = fis.read()) != -1) {
+//
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     private void doNext() {
@@ -104,28 +143,53 @@ public class GridActivity extends Activity {
     }
 
     private void doReset() {
+
+        onPause();
+
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+
         alertBuilder
             .setTitle(R.string.reset_alert_title)
             .setMessage(R.string.reset_alert_message)
             .setPositiveButton(R.string.yes_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    hideStatusBar();
                     GameState.getInstance().setState(GameState.PAUSE);
                     mCustomGridView.resetGridView();
                     btnPause.setVisibility(ImageView.GONE);
                     btnPlay.setVisibility(ImageView.VISIBLE);
+                    onResume();
+                    return;
                 }
             })
             .setNegativeButton(R.string.no_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    hideStatusBar();
+                    GameState.getInstance().setState(GameState.PLAY);
+                    onResume();
                     return;
                 }
             });
 
         alertBuilder.create().show();
 
+    }
+
+    private void openSettings(View v) {
+
+        Intent settingsIntent = new Intent(v.getContext(), SettingsActivity.class);
+        startActivity(settingsIntent);
+
+    }
+
+
+    private void hideStatusBar(){
+        //Hide the Status Bar
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
 }

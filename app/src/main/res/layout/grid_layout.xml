@@ -20,7 +20,7 @@
         android:layout_marginBottom="13dp">
 
         <ImageButton
-            android:id="@+id/btnConfig"
+            android:id="@+id/btnSettings"
             android:src="@drawable/ic_settings"
             style="@style/Button"
             />

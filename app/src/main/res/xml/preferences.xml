@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_game_rules">
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="2"
+        android:title="Underpopulate Number"
+        android:entries="@array/nList"
+        android:entryValues="@array/nList"
+        android:key="underpopulate_number"/>
+    <ListPreference
+        android:defaultValue="3"
+        android:title="Overpopulate Number"
+        android:entries="@array/nList"
+        android:entryValues="@array/nList"
+        android:key="overpopulate_number"/>
+    <ListPreference
+        android:defaultValue="3"
+        android:title="Spawn Number"
+        android:entries="@array/nList"
+        android:entryValues="@array/nList"
+        android:key="spawn_number"/>
+
+</PreferenceScreen>

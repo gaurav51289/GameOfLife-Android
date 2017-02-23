@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class GameAlgo {
 
-    public static final int C = 32;
+    public static final int C = 64;
 
     public static DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
     public static final int W = metrics.widthPixels / C;

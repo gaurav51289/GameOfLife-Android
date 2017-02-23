@@ -8,5 +8,8 @@
         android:text="@string/about_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textAbout"/>
+        android:id="@+id/textAbout"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold|italic"/>
 </ScrollView>

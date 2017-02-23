@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="background">#818384</color>
+    <color name="colorPrimary">#f78087</color>
+    <color name="colorPrimaryDark">#8f0810</color>
+    <color name="colorAccent">#e7e5e6</color>
+    <color name="background">#e6c2c4</color>
     <color name="cell">#e23642</color>
     <color name="btnBG">#a0202020</color>
     <color name="alertText">#fafafa</color>
