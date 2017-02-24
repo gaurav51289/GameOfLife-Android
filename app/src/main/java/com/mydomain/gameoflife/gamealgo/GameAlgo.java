@@ -2,8 +2,11 @@ package com.mydomain.gameoflife.gamealgo;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.preference.PreferenceActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import com.mydomain.gameoflife.activities.SettingsActivity;
 
 
 public class GameAlgo {
@@ -35,15 +38,22 @@ public class GameAlgo {
         gridArray[h][w] = false;
     }
 
+
+
     public void initGrid() {
 
         clearGrid();
 
-        gridArray[9][(W / 2) - 3] = true;
-        gridArray[10][(W / 2) - 2] = true;
-        gridArray[8][(W / 2) - 1] = true;
-        gridArray[9][(W / 2) - 1] = true;
-        gridArray[10][(W / 2) - 1] = true;
+        int init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(mContext));
+
+        switch (init_pattern){
+            case 1:
+                InitPatternGenerator.getGliderPattern(gridArray, H, W);
+                break;
+            case 2:
+                InitPatternGenerator.getSmallExploderPattern(gridArray, H, W);
+                break;
+        }
     }
 
     public void clearGrid() {
@@ -56,9 +66,10 @@ public class GameAlgo {
 
     public void createNextGrid() {
         int neighbours;
-        int min = 2;
-        int max = 3;
-        int born = 3;
+        int min = Integer.parseInt(SettingsActivity.getUnderPopNum(mContext));
+        int max = Integer.parseInt(SettingsActivity.getOverPopNum(mContext));
+        int born = Integer.parseInt(SettingsActivity.getSpawnNum(mContext));
+
 
         boolean[][] nextGridArray = new boolean[H][W];
 

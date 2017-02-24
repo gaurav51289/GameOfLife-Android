@@ -26,6 +26,11 @@
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:textColorPrimary">@color/alertText</item>
         <item name="android:colorBackground">@color/alertBG</item>
+
+    </style>
+
+    <style name="Speedbar">
+        <item name="android:background">@color/btnBG</item>
     </style>
 
 </resources>

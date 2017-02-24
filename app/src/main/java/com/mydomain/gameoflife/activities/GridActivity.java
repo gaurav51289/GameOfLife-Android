@@ -9,6 +9,7 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import com.mydomain.gameoflife.customviews.CustomGridView;
 import com.mydomain.gameoflife.R;
@@ -19,7 +20,8 @@ public class GridActivity extends Activity {
 
     CustomGridView mCustomGridView;
 
-    ImageButton btnPlay, btnPause, btnNext, btnReset, btnSettings;
+    ImageButton btnPlay, btnPause, btnNext, btnReset, btnSettings, btnSpeed;
+    SeekBar speedBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class GridActivity extends Activity {
         btnNext = (ImageButton) findViewById(R.id.btnNext);
         btnReset = (ImageButton) findViewById(R.id.btnReset);
         btnSettings = (ImageButton) findViewById(R.id.btnSettings);
+        btnSpeed = (ImageButton) findViewById(R.id.btnSpeed);
+        speedBar = (SeekBar) findViewById(R.id.speedBar);
 
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -64,6 +68,9 @@ public class GridActivity extends Activity {
                         openSettings(v);
                         break;
 
+                    case R.id.btnSpeed:
+                        setSpeed();
+
                 }
             }
         };
@@ -73,6 +80,7 @@ public class GridActivity extends Activity {
         btnNext.setOnClickListener(listener);
         btnReset.setOnClickListener(listener);
         btnSettings.setOnClickListener(listener);
+        btnSpeed.setOnClickListener(listener);
 
     }
 
@@ -105,7 +113,7 @@ public class GridActivity extends Activity {
     @Override
     protected void onResume(){
         super.onResume();
-        mCustomGridView.updateGridView();
+        //mCustomGridView.updateGridView();
 
 //        String FILENAME = "gameoflife";
 //        FileInputStream fis;
@@ -175,6 +183,16 @@ public class GridActivity extends Activity {
 
         alertBuilder.create().show();
 
+    }
+
+    private void setSpeed(){
+        int visibility = speedBar.getVisibility();
+
+        if(visibility == SeekBar.GONE){
+            speedBar.setVisibility(SeekBar.VISIBLE);
+        }else{
+            speedBar.setVisibility(SeekBar.GONE);
+        }
     }
 
     private void openSettings(View v) {

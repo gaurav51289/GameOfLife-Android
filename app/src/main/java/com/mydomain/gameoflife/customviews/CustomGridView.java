@@ -28,8 +28,12 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        mGameAlgo = new GameAlgo(context);
-        initGridView();
+
+        if(!isInEditMode()){
+            mGameAlgo = new GameAlgo(context);
+            initGridView();
+        }
+
     }
 
 
@@ -51,30 +55,33 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     @Override
     protected void onDraw(Canvas canvas){
-        Context context = getContext();
-        Paint paintBackground = new Paint();
-        paintBackground.setColor(ContextCompat.getColor(context, R.color.background));
+        if(!isInEditMode()){
+            Context context = getContext();
+            Paint paintBackground = new Paint();
+            paintBackground.setColor(ContextCompat.getColor(context, R.color.background));
 
-        Paint paintCell = new Paint();
-        paintCell.setColor(ContextCompat.getColor(context, R.color.cell));
+            Paint paintCell = new Paint();
+            paintCell.setColor(ContextCompat.getColor(context, R.color.cell));
 
-        canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
+            canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
 
 
-        for (int h = 0; h < GameAlgo.H; h++) {
-            for (int w = 0; w < GameAlgo.W; w++) {
-                if (GameAlgo.getGridArray()[h][w]) {
+            for (int h = 0; h < GameAlgo.H; h++) {
+                for (int w = 0; w < GameAlgo.W; w++) {
+                    if (GameAlgo.getGridArray()[h][w]) {
 
-                    float horCenter = (w * cellSize) + (cellSize/2) ;
-                    float verCenter = (h * cellSize) + (cellSize/2);
+                        float horCenter = (w * cellSize) + (cellSize/2) ;
+                        float verCenter = (h * cellSize) + (cellSize/2);
 
-                    canvas.drawCircle(horCenter, verCenter, cellRadius, paintCell);
+                        canvas.drawCircle(horCenter, verCenter, cellRadius, paintCell);
 
+                    }
                 }
             }
+
+            invalidate();
         }
 
-        invalidate();
     }
 
     @Override

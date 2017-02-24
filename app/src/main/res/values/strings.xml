@@ -18,4 +18,14 @@ of a cellular automaton.</string>
     <string name="yes_label">Yes</string>
     <string name="no_label">No</string>
     <string name="pref_game_rules">Game Rules</string>
+    <string name="underpop_title">Underpopulate Number</string>
+    <string name="underpop_summary">Any live cell with fewer than the \'Underpopulate Number\' of live neighbours dies, as if by under-population</string>
+    <string name="overpop_title">Overpopulate Number</string>
+    <string name="overpop_summary">Any live cell with more than the \'Overpopulate Number\' of live neighbours dies, as if by over-population</string>
+    <string name="spawn_title">Spawn Number</string>
+    <string name="spawn_summary">Any dead cell with \'Spawn Number\' of live neighbours becomes alive</string>
+    <string name="pref_colors">Colors</string>
+    <string name="init_pattern">Initial Pattern</string>
+    <string name="init_pattern_summary">Many different types of patterns occur in the Game of Life, including still lifes, oscillators, and patterns that translate themselves across the board, including the glider, discovered by Richard K. Guy in 1970, and several kinds of spaceships.</string>
+
 </resources>

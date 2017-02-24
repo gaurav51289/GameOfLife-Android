@@ -6,21 +6,39 @@
     </PreferenceCategory>
     <ListPreference
         android:defaultValue="2"
-        android:title="Underpopulate Number"
+        android:title="@string/underpop_title"
+        android:summary="@string/underpop_summary"
         android:entries="@array/nList"
         android:entryValues="@array/nList"
         android:key="underpopulate_number"/>
     <ListPreference
         android:defaultValue="3"
-        android:title="Overpopulate Number"
+        android:title="@string/overpop_title"
+        android:summary="@string/overpop_summary"
         android:entries="@array/nList"
         android:entryValues="@array/nList"
         android:key="overpopulate_number"/>
     <ListPreference
         android:defaultValue="3"
-        android:title="Spawn Number"
+        android:title="@string/spawn_title"
+        android:summary="@string/spawn_summary"
         android:entries="@array/nList"
         android:entryValues="@array/nList"
         android:key="spawn_number"/>
+
+    <PreferenceCategory
+        android:title="@string/init_pattern">
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="1"
+        android:title="@string/init_pattern"
+        android:summary="@string/init_pattern_summary"
+        android:entries="@array/patternList"
+        android:entryValues="@array/patternListVals"
+        android:key="init_pattern"/>
+
+    <PreferenceCategory
+        android:title="@string/pref_colors">
+    </PreferenceCategory>
 
 </PreferenceScreen>
