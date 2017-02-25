@@ -24,7 +24,7 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     private float touchX, touchY;
     private int cellSize = GameAlgo.C;
-    private int cellRadius = (cellSize/2) - 1;
+    private int cellRadius = (cellSize/2) - 4;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -60,10 +60,18 @@ public class CustomGridView extends View implements View.OnTouchListener {
             Paint paintBackground = new Paint();
             paintBackground.setColor(ContextCompat.getColor(context, R.color.background));
 
+            Paint paintLines = new Paint();
+            paintLines.setColor(ContextCompat.getColor(context, R.color.gridlines));
+
             Paint paintCell = new Paint();
             paintCell.setColor(ContextCompat.getColor(context, R.color.cell));
 
             canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
+
+            float[] fArr = mGameAlgo.getVerticalLinesArr();
+            canvas.drawLines(fArr, 0, fArr.length, paintLines);
+            fArr = mGameAlgo.getHorizontalLinesArr();
+            canvas.drawLines(fArr, 0, fArr.length, paintLines);
 
 
             for (int h = 0; h < GameAlgo.H; h++) {

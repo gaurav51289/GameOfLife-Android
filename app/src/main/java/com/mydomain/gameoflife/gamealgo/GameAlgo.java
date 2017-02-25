@@ -14,8 +14,10 @@ public class GameAlgo {
     public static final int C = 64;
 
     public static DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-    public static final int W = metrics.widthPixels / C;
-    public static final int H = metrics.heightPixels / C;
+    public static final float DEVICE_WIDTH_PX = metrics.widthPixels;
+    public static final float DEVICE_HEIGHT_PX = metrics.heightPixels;
+    public static final int W = (int) (DEVICE_WIDTH_PX / C);
+    public static final int H = (int) (DEVICE_HEIGHT_PX / C);
 
     private static final boolean[][] gridArray = new boolean[H][W];
 
@@ -114,4 +116,43 @@ public class GameAlgo {
         }
         return neighbourCount;
     }
+
+    public float[] getHorizontalLinesArr() {
+
+        int nol = H;
+        int nop = nol*4;
+        float[] returnArr = new float[nop] ;
+        int count = 1;
+        for(int i = 0; i < nop; i=i+4){
+
+            returnArr[i] = 0;
+            returnArr[i+1] = (count * C);
+            returnArr[i+2] = DEVICE_WIDTH_PX;
+            returnArr[i+3] = (count * C);
+            count++;
+        }
+
+
+        return returnArr;
+    }
+
+    public float[] getVerticalLinesArr() {
+
+        int nol = W;
+        int nop = nol*4;
+        float[] returnArr = new float[nop] ;
+        int count = 1;
+        for(int i = 0; i < nop; i=i+4){
+
+            returnArr[i] = (count * C);
+            returnArr[i+1] = 0;
+            returnArr[i+2] = (count * C);
+            returnArr[i+3] = DEVICE_HEIGHT_PX;
+            count++;
+        }
+
+
+        return returnArr;
+    }
+
 }
