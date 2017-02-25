@@ -15,11 +15,10 @@
         <item>Blank</item>
         <item>Glider</item>
         <item>Small Exploder</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+        <item>Exploder</item>
+        <item>10 Cell Row</item>
+        <item>Light Weight Spaceship</item>
+        <item>Gosper Glider Gun</item>
     </string-array>
 
     <string-array name="patternListVals">
@@ -30,6 +29,5 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
-        <item>8</item>
     </string-array>
 </resources>

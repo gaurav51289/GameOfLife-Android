@@ -11,7 +11,7 @@ import com.mydomain.gameoflife.activities.SettingsActivity;
 
 public class GameAlgo {
 
-    public static final int C = 64;
+    public static final int C = 32;
 
     public static DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
     public static final float DEVICE_WIDTH_PX = metrics.widthPixels;
@@ -56,6 +56,18 @@ public class GameAlgo {
                 break;
             case 3:
                 InitPatternGenerator.getSmallExploderPattern(gridArray, H, W);
+                break;
+            case 4:
+                InitPatternGenerator.getExploderPattern(gridArray, H, W);
+                break;
+            case 5:
+                InitPatternGenerator.get10CellRowPattern(gridArray, H, W);
+                break;
+            case 6:
+                InitPatternGenerator.getLightWeightSpaceshipPattern(gridArray, H, W);
+                break;
+            case 7:
+                InitPatternGenerator.getGosperGliderGunPattern(gridArray, H, W);
                 break;
         }
     }
