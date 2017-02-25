@@ -58,8 +58,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/disp_logo"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="38dp"
         android:id="@+id/imageView"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

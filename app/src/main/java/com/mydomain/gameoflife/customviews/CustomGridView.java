@@ -88,9 +88,9 @@ public class CustomGridView extends View implements View.OnTouchListener {
             canvas.drawLines(fArr, 0, fArr.length, paintLines);
 
 
-            for (int h = 0; h < GameAlgo.H; h++) {
-                for (int w = 0; w < GameAlgo.W; w++) {
-                    if (GameAlgo.getGridArray()[h][w]) {
+            for (int h = 0; h < mGameAlgo.H; h++) {
+                for (int w = 0; w < mGameAlgo.W; w++) {
+                    if (mGameAlgo.getGridArray()[h][w]) {
 
                         float horCenter = (w * cellSize) + (cellSize/2) ;
                         float verCenter = (h * cellSize) + (cellSize/2);
@@ -124,11 +124,11 @@ public class CustomGridView extends View implements View.OnTouchListener {
             int gridArrY = (int) (touchY/cellSize);
 
             //setting newly touched cell in the grid array
-            boolean currentCellState = GameAlgo.getGridArray()[gridArrY][gridArrX];
+            boolean currentCellState = mGameAlgo.getGridArray()[gridArrY][gridArrX];
             if(!currentCellState){
-                GameAlgo.setGridCell(gridArrY, gridArrX);
+                mGameAlgo.setGridCell(gridArrY, gridArrX);
             }else{
-                GameAlgo.unsetGridCell(gridArrY, gridArrX);
+                mGameAlgo.unsetGridCell(gridArrY, gridArrX);
             }
         }
 

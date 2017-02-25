@@ -11,15 +11,15 @@ import com.mydomain.gameoflife.activities.SettingsActivity;
 
 public class GameAlgo {
 
-    public static final int C = 32;
+    public static final int C = 64;
 
-    public static DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-    public static final float DEVICE_WIDTH_PX = metrics.widthPixels;
-    public static final float DEVICE_HEIGHT_PX = metrics.heightPixels;
-    public static final int W = (int) (DEVICE_WIDTH_PX / C);
-    public static final int H = (int) (DEVICE_HEIGHT_PX / C);
+    public DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+    public float DEVICE_WIDTH_PX = metrics.widthPixels;
+    public float DEVICE_HEIGHT_PX = metrics.heightPixels;
+    public int W = (int) (DEVICE_WIDTH_PX / C);
+    public int H = (int) (DEVICE_HEIGHT_PX / C);
 
-    private static final boolean[][] gridArray = new boolean[H][W];
+    private final boolean[][] gridArray = new boolean[H][W];
 
     private Context mContext;
 
@@ -28,15 +28,15 @@ public class GameAlgo {
         initGrid();
     }
 
-    public static boolean[][] getGridArray() {
+    public boolean[][] getGridArray() {
         return gridArray;
     }
 
-    public static void setGridCell(int h, int w){
+    public void setGridCell(int h, int w){
         gridArray[h][w] = true;
     }
 
-    public static void unsetGridCell(int h, int w){
+    public void unsetGridCell(int h, int w){
         gridArray[h][w] = false;
     }
 
