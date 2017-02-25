@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextThemeWrapper;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.mydomain.gameoflife.customviews.CustomGridView;
 import com.mydomain.gameoflife.R;
@@ -41,9 +43,10 @@ public class GridActivity extends Activity {
         btnSettings = (ImageButton) findViewById(R.id.btnSettings);
         btnSpeed = (ImageButton) findViewById(R.id.btnSpeed);
         speedBar = (SeekBar) findViewById(R.id.speedBar);
+        speedBar.setProgress(345);
 
 
-        View.OnClickListener listener = new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -75,12 +78,37 @@ public class GridActivity extends Activity {
             }
         };
 
-        btnPlay.setOnClickListener(listener);
-        btnPause.setOnClickListener(listener);
-        btnNext.setOnClickListener(listener);
-        btnReset.setOnClickListener(listener);
-        btnSettings.setOnClickListener(listener);
-        btnSpeed.setOnClickListener(listener);
+        final int min = 195;
+        final int max = 495;
+
+        speedBar.setMax(max - min);
+
+        SeekBar.OnSeekBarChangeListener sbChangeListner = new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                int newProgress = min + progress;
+                int delay = 500 - newProgress;
+                mCustomGridView.setMovementDelay(delay);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+
+        btnPlay.setOnClickListener(clickListener);
+        btnPause.setOnClickListener(clickListener);
+        btnNext.setOnClickListener(clickListener);
+        btnReset.setOnClickListener(clickListener);
+        btnSettings.setOnClickListener(clickListener);
+        btnSpeed.setOnClickListener(clickListener);
+        speedBar.setOnSeekBarChangeListener(sbChangeListner);
 
     }
 

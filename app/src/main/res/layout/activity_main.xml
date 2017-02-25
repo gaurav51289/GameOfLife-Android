@@ -13,10 +13,10 @@
     tools:context="com.mydomain.gameoflife.activities.MainActivity">
 
     <Button
-        android:text="@string/continue_label"
+        android:text="@string/settings_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnContinue"
+        android:id="@+id/btnSettingsMain"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="27dp"/>
@@ -26,20 +26,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnNew"
-        android:layout_alignBaseline="@+id/btnContinue"
-        android:layout_alignBottom="@+id/btnContinue"
-        android:layout_toLeftOf="@+id/btnContinue"
-        android:layout_toStartOf="@+id/btnContinue"/>
+        android:layout_alignBaseline="@+id/btnSettingsMain"
+        android:layout_alignBottom="@+id/btnSettingsMain"
+        android:layout_toLeftOf="@+id/btnSettingsMain"
+        android:layout_toStartOf="@+id/btnSettingsMain"/>
 
     <Button
         android:text="@string/about_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnAbout"
-        android:layout_alignBaseline="@+id/btnContinue"
-        android:layout_alignBottom="@+id/btnContinue"
-        android:layout_toRightOf="@+id/btnContinue"
-        android:layout_toEndOf="@+id/btnContinue"/>
+        android:layout_alignBaseline="@+id/btnSettingsMain"
+        android:layout_alignBottom="@+id/btnSettingsMain"
+        android:layout_toRightOf="@+id/btnSettingsMain"
+        android:layout_toEndOf="@+id/btnSettingsMain"/>
 
     <TextView
         android:text="Game of Life"

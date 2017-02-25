@@ -50,9 +50,11 @@ public class GameAlgo {
 
         switch (init_pattern){
             case 1:
-                InitPatternGenerator.getGliderPattern(gridArray, H, W);
                 break;
             case 2:
+                InitPatternGenerator.getGliderPattern(gridArray, H, W);
+                break;
+            case 3:
                 InitPatternGenerator.getSmallExploderPattern(gridArray, H, W);
                 break;
         }

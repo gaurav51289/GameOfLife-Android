@@ -5,6 +5,8 @@ package com.mydomain.gameoflife.gamealgo;
 public class InitPatternGenerator {
 
 
+
+
     public static void getGliderPattern(boolean[][] gridArray, int H, int W){
 
         int hh = H/2; //half of the height

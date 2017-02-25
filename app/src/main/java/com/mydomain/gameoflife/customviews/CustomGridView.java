@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.mydomain.gameoflife.activities.SettingsActivity;
 import com.mydomain.gameoflife.gamealgo.GameAlgo;
 import com.mydomain.gameoflife.R;
 import com.mydomain.gameoflife.gamealgo.GameState;
@@ -18,19 +19,21 @@ import com.mydomain.gameoflife.gamealgo.GameState;
 public class CustomGridView extends View implements View.OnTouchListener {
 
 
-    private long movementDelay = 250;
+    private long movementDelay = 255;
     private RefreshHandler mRefreshHandler = new RefreshHandler();
     private GameAlgo mGameAlgo;
 
     private float touchX, touchY;
     private int cellSize = GameAlgo.C;
     private int cellRadius = (cellSize/2) - 4;
+    //private int currentInitSetting;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
         if(!isInEditMode()){
             mGameAlgo = new GameAlgo(context);
+            //currentInitSetting = Integer.parseInt(SettingsActivity.getInitPattern(context));
             initGridView();
         }
 
@@ -42,16 +45,27 @@ public class CustomGridView extends View implements View.OnTouchListener {
     }
 
     public void updateGridView() {
+//        int init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(getContext()));
+//        if(currentInitSetting != init_pattern){
+//            currentInitSetting = init_pattern;
+//            resetGridView();
+//        }else{
+//            mGameAlgo.createNextGrid();
+//            mRefreshHandler.nextRefresh(movementDelay);
+//        }
         mGameAlgo.createNextGrid();
         mRefreshHandler.nextRefresh(movementDelay);
     }
 
     public void resetGridView(){
 
-        mGameAlgo.clearGrid();
+        mGameAlgo.initGrid();
 
     }
 
+    public void setMovementDelay(long movementDelay) {
+        this.movementDelay = movementDelay;
+    }
 
     @Override
     protected void onDraw(Canvas canvas){

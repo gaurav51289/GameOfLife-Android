@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.mydomain.gameoflife.R;
-import com.mydomain.gameoflife.activities.AboutActivity;
-import com.mydomain.gameoflife.activities.GridActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnAbout, btnNewGame;
+    Button btnAbout, btnNewGame, btnSettingsMain;
 
 
     @Override
@@ -27,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnNewGame = (Button) findViewById(R.id.btnNew);
+        btnSettingsMain = (Button) findViewById(R.id.btnSettingsMain);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -40,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent gridIntent = new Intent(v.getContext(), GridActivity.class);
                         startActivity(gridIntent);
                         break;
+                    case R.id.btnSettingsMain:
+                        Intent settingsIntent = new Intent(v.getContext(), SettingsActivity.class);
+                        startActivity(settingsIntent);
+                        break;
                 }
             }
         };
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnAbout.setOnClickListener(listener);
         btnNewGame.setOnClickListener(listener);
+        btnSettingsMain.setOnClickListener(listener);
 
     }
 }
