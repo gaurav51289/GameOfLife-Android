@@ -1,6 +1,9 @@
 package com.mydomain.gameoflife.gamealgo;
 
 
+import android.content.Context;
+
+import com.mydomain.gameoflife.activities.SettingsActivity;
 
 public class InitPatternGenerator {
 

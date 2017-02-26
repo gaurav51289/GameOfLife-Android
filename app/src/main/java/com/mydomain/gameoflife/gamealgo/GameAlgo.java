@@ -5,21 +5,23 @@ import android.content.res.Resources;
 import android.preference.PreferenceActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.mydomain.gameoflife.R;
 import com.mydomain.gameoflife.activities.SettingsActivity;
 
 
 public class GameAlgo {
 
-    public static final int C = 64;
+    public int C;
 
     public DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
     public float DEVICE_WIDTH_PX = metrics.widthPixels;
     public float DEVICE_HEIGHT_PX = metrics.heightPixels;
-    public int W = (int) (DEVICE_WIDTH_PX / C);
-    public int H = (int) (DEVICE_HEIGHT_PX / C);
+    public int W;
+    public int H;
 
-    private final boolean[][] gridArray = new boolean[H][W];
+    private boolean[][] gridArray;
 
     private Context mContext;
 
@@ -46,6 +48,11 @@ public class GameAlgo {
 
         clearGrid();
 
+        C = Integer.parseInt(SettingsActivity.getGridSize(mContext));
+        W = (int) (DEVICE_WIDTH_PX / C);
+        H = (int) (DEVICE_HEIGHT_PX / C);
+        gridArray = new boolean[H][W];
+
         int init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(mContext));
 
         switch (init_pattern){
@@ -67,7 +74,12 @@ public class GameAlgo {
                 InitPatternGenerator.getLightWeightSpaceshipPattern(gridArray, H, W);
                 break;
             case 7:
-                InitPatternGenerator.getGosperGliderGunPattern(gridArray, H, W);
+                if(Integer.parseInt(SettingsActivity.getGridSize(mContext)) > 32 ){
+                    clearGrid();
+                    Toast.makeText(mContext, R.string.grid_size_not_valid, Toast.LENGTH_LONG).show();
+                }else{
+                    InitPatternGenerator.getGosperGliderGunPattern(gridArray, H, W);
+                }
                 break;
         }
     }

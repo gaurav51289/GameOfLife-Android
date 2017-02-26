@@ -26,4 +26,7 @@ of a cellular automaton.</string>
     <string name="pref_colors">Colors</string>
     <string name="init_pattern">Initial Pattern</string>
     <string name="init_pattern_summary">Many different types of patterns occur in the Game of Life, including still lifes, oscillators, and patterns that translate themselves across the board, including the glider, discovered by Richard K. Guy in 1970, and several kinds of spaceships.</string>
+    <string name="grid_size">Grid Size</string>
+    <string name="grid_size_summary">Change the size of the grid.</string>
+    <string name="grid_size_not_valid">Grid is cleared as Gosper Glider Gun is not supported in the current grid size. Select Large Grid from settings.</string>
 </resources>

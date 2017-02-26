@@ -19,6 +19,9 @@ public class SettingsActivity extends PreferenceActivity {
     private static final String INIT_PATTERN = "init_pattern";
     private static final String INIT_PATTERN_DEF = "1";
 
+    private static final String GRID_SIZE = "grid_size";
+    private static final String GRID_SIZE_DEF = "64";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -46,5 +49,11 @@ public class SettingsActivity extends PreferenceActivity {
 
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(INIT_PATTERN, INIT_PATTERN_DEF);
+    }
+
+    public static String getGridSize(Context context){
+
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(GRID_SIZE, GRID_SIZE_DEF);
     }
 }

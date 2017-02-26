@@ -24,18 +24,20 @@ public class CustomGridView extends View implements View.OnTouchListener {
     private GameAlgo mGameAlgo;
 
     private float touchX, touchY;
-    private int cellSize = GameAlgo.C;
-    private int cellRadius = (cellSize/2) - 4;
-    //private int currentInitSetting;
+    private int cellSize;
+    private int cellRadius;
+
+    private int currentInitPattern, currentGridSize;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
-        if(!isInEditMode()){
             mGameAlgo = new GameAlgo(context);
-            //currentInitSetting = Integer.parseInt(SettingsActivity.getInitPattern(context));
+            cellSize = mGameAlgo.C;
+            cellRadius = (cellSize/2) - 4;
+            currentInitPattern = Integer.parseInt(SettingsActivity.getInitPattern(context));
+            currentGridSize = Integer.parseInt(SettingsActivity.getGridSize(context));
             initGridView();
-        }
 
     }
 
@@ -45,14 +47,6 @@ public class CustomGridView extends View implements View.OnTouchListener {
     }
 
     public void updateGridView() {
-//        int init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(getContext()));
-//        if(currentInitSetting != init_pattern){
-//            currentInitSetting = init_pattern;
-//            resetGridView();
-//        }else{
-//            mGameAlgo.createNextGrid();
-//            mRefreshHandler.nextRefresh(movementDelay);
-//        }
         mGameAlgo.createNextGrid();
         mRefreshHandler.nextRefresh(movementDelay);
     }
@@ -69,8 +63,19 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     @Override
     protected void onDraw(Canvas canvas){
-        if(!isInEditMode()){
             Context context = getContext();
+            if(currentInitPattern != Integer.parseInt(SettingsActivity.getInitPattern(context))){
+                currentInitPattern = Integer.parseInt(SettingsActivity.getInitPattern(context));
+                resetGridView();
+            }
+
+            if(currentGridSize != Integer.parseInt(SettingsActivity.getGridSize(context))){
+                currentGridSize = Integer.parseInt(SettingsActivity.getGridSize(context));
+                resetGridView();
+                cellSize = mGameAlgo.C;
+                cellRadius = (cellSize/2) - 4;
+            }
+
             Paint paintBackground = new Paint();
             paintBackground.setColor(ContextCompat.getColor(context, R.color.background));
 
@@ -102,7 +107,6 @@ public class CustomGridView extends View implements View.OnTouchListener {
             }
 
             invalidate();
-        }
 
     }
 

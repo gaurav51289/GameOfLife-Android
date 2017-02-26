@@ -26,9 +26,6 @@
         android:entryValues="@array/nList"
         android:key="spawn_number"/>
 
-    <PreferenceCategory
-        android:title="@string/init_pattern">
-    </PreferenceCategory>
     <ListPreference
         android:defaultValue="1"
         android:title="@string/init_pattern"
@@ -36,6 +33,17 @@
         android:entries="@array/patternList"
         android:entryValues="@array/patternListVals"
         android:key="init_pattern"/>
+
+    <PreferenceCategory
+        android:title="@string/grid_size">
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="64"
+        android:title="@string/grid_size"
+        android:summary="@string/grid_size_summary"
+        android:entries="@array/gridSizeList"
+        android:entryValues="@array/gridSizeListVals"
+        android:key="grid_size"/>
 
     <PreferenceCategory
         android:title="@string/pref_colors">
