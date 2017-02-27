@@ -37,9 +37,9 @@
         <item>Large</item>
     </string-array>
     <string-array name="gridSizeListVals">
-        <item>128</item>
-        <item>64</item>
-        <item>32</item>
+        <item>120</item>
+        <item>60</item>
+        <item>30</item>
     </string-array>
 
 

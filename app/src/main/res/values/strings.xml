@@ -29,4 +29,8 @@ of a cellular automaton.</string>
     <string name="grid_size">Grid Size</string>
     <string name="grid_size_summary">Change the size of the grid.</string>
     <string name="grid_size_not_valid">Grid is cleared as Gosper Glider Gun is not supported in the current grid size. Select a larger grid from settings.</string>
+    <string name="color_bg_summary">Change the background color of the grid.</string>
+    <string name="color_bg_title">Background Color</string>
+    <string name="color_cell_summary">Change the color of the cell.</string>
+    <string name="color_cell_title">Cell Color</string>
 </resources>

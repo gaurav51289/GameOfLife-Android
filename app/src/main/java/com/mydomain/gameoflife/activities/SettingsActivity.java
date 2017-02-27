@@ -9,18 +9,24 @@ import com.mydomain.gameoflife.R;
 
 public class SettingsActivity extends PreferenceActivity {
 
-    private static final String UNDERPOP = "underpopulate_number";
-    private static final String UNDERPOP_DEF = "2";
-    private static final String OVERPOP = "overpopulate_number";
-    private static final String OVERPOP_DEF = "3";
-    private static final String SPAWN = "spawn_number";
-    private static final String SPAWN_DEF = "3";
+    private static String UNDERPOP = "underpopulate_number";
+    private static String UNDERPOP_DEF = "2";
+    private static String OVERPOP = "overpopulate_number";
+    private static String OVERPOP_DEF = "3";
+    private static String SPAWN = "spawn_number";
+    private static String SPAWN_DEF = "3";
 
-    private static final String INIT_PATTERN = "init_pattern";
-    private static final String INIT_PATTERN_DEF = "1";
+    private static String INIT_PATTERN = "init_pattern";
+    private static String INIT_PATTERN_DEF = "1";
 
-    private static final String GRID_SIZE = "grid_size";
-    private static final String GRID_SIZE_DEF = "64";
+    private static String GRID_SIZE = "grid_size";
+    private static String GRID_SIZE_DEF = "60";
+
+    private static String COLOR_BG = "color_bg";
+    private static int COLOR_BG_DEF = 20;
+
+    private static String COLOR_CELL = "color_cell";
+    private static int COLOR_CELL_DEF = 10;
 
 
     @Override
@@ -46,14 +52,22 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     public static String getInitPattern(Context context){
-
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(INIT_PATTERN, INIT_PATTERN_DEF);
     }
 
     public static String getGridSize(Context context){
-
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(GRID_SIZE, GRID_SIZE_DEF);
+    }
+
+    public static int getBackgroundColor(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(COLOR_BG, COLOR_BG_DEF);
+    }
+
+    public static int getCellColor(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(COLOR_CELL, COLOR_CELL_DEF);
     }
 }

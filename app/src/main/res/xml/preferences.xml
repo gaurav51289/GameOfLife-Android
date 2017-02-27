@@ -38,7 +38,7 @@
         android:title="@string/grid_size">
     </PreferenceCategory>
     <ListPreference
-        android:defaultValue="64"
+        android:defaultValue="60"
         android:title="@string/grid_size"
         android:summary="@string/grid_size_summary"
         android:entries="@array/gridSizeList"
@@ -48,5 +48,17 @@
     <PreferenceCategory
         android:title="@string/pref_colors">
     </PreferenceCategory>
+
+    <com.jrummyapps.android.colorpicker.ColorPreference
+        android:defaultValue="@color/color_bg_def"
+        android:key="color_bg"
+        android:summary="@string/color_bg_summary"
+        android:title="@string/color_bg_title"/>
+
+    <com.jrummyapps.android.colorpicker.ColorPreference
+        android:defaultValue="@color/color_cell_def"
+        android:key="color_cell"
+        android:summary="@string/color_cell_summary"
+        android:title="@string/color_cell_title"/>
 
 </PreferenceScreen>

@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mydomain.gameoflife.activities.SettingsActivity;
 import com.mydomain.gameoflife.gamealgo.GameAlgo;
@@ -28,10 +29,11 @@ public class CustomGridView extends View implements View.OnTouchListener {
     private int cellRadius;
 
     private int currentInitPattern, currentGridSize;
+    public Context context;
 
     public CustomGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-
+            this.context = context;
             mGameAlgo = new GameAlgo(context);
             cellSize = mGameAlgo.C;
             cellRadius = (cellSize/2) - 4;
@@ -63,7 +65,7 @@ public class CustomGridView extends View implements View.OnTouchListener {
 
     @Override
     protected void onDraw(Canvas canvas){
-            Context context = getContext();
+            context = getContext();
             if(currentInitPattern != Integer.parseInt(SettingsActivity.getInitPattern(context))){
                 currentInitPattern = Integer.parseInt(SettingsActivity.getInitPattern(context));
                 resetGridView();
@@ -77,13 +79,13 @@ public class CustomGridView extends View implements View.OnTouchListener {
             }
 
             Paint paintBackground = new Paint();
-            paintBackground.setColor(ContextCompat.getColor(context, R.color.background));
+            paintBackground.setColor(SettingsActivity.getBackgroundColor(context));
 
             Paint paintLines = new Paint();
             paintLines.setColor(ContextCompat.getColor(context, R.color.gridlines));
 
             Paint paintCell = new Paint();
-            paintCell.setColor(ContextCompat.getColor(context, R.color.cell));
+            paintCell.setColor(SettingsActivity.getCellColor(context));
 
             canvas.drawRect(0, 0, getWidth(), getHeight(), paintBackground);
 
@@ -128,11 +130,16 @@ public class CustomGridView extends View implements View.OnTouchListener {
             int gridArrY = (int) (touchY/cellSize);
 
             //setting newly touched cell in the grid array
-            boolean currentCellState = mGameAlgo.getGridArray()[gridArrY][gridArrX];
-            if(!currentCellState){
-                mGameAlgo.setGridCell(gridArrY, gridArrX);
-            }else{
-                mGameAlgo.unsetGridCell(gridArrY, gridArrX);
+            boolean currentCellState;
+            try{
+                currentCellState = mGameAlgo.getGridArray()[gridArrY][gridArrX];
+                if(!currentCellState){
+                    mGameAlgo.setGridCell(gridArrY, gridArrX);
+                }else{
+                    mGameAlgo.unsetGridCell(gridArrY, gridArrX);
+                }
+            }catch (Exception e){
+
             }
         }
 
