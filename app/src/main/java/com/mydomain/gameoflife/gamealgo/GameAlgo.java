@@ -20,7 +20,7 @@ public class GameAlgo {
     public float DEVICE_HEIGHT_PX = metrics.heightPixels;
     public int W;
     public int H;
-
+    private int init_pattern;
     private boolean[][] gridArray;
 
     private Context mContext;
@@ -53,7 +53,7 @@ public class GameAlgo {
         H = (int) (DEVICE_HEIGHT_PX / C);
         gridArray = new boolean[H][W];
 
-        int init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(mContext));
+        init_pattern = Integer.parseInt(SettingsActivity.getInitPattern(mContext));
 
         switch (init_pattern){
             case 1:
@@ -74,7 +74,7 @@ public class GameAlgo {
                 InitPatternGenerator.getLightWeightSpaceshipPattern(gridArray, H, W);
                 break;
             case 7:
-                if(Integer.parseInt(SettingsActivity.getGridSize(mContext)) > 32 ){
+                if( W < 40 ){
                     clearGrid();
                     Toast.makeText(mContext, R.string.grid_size_not_valid, Toast.LENGTH_LONG).show();
                 }else{
@@ -133,13 +133,29 @@ public class GameAlgo {
         }else{
             neighbourCount = 0;
         }
-        for (int h = -1; h <= +1; h++) {
-            for (int w = -1; w <= +1; w++) {
-                if (gridArray[(H + (y + h)) % H][(W + (x + w)) % W]) {
-                    neighbourCount++;
+
+        if(init_pattern != 7){
+            for (int h = -1; h <= +1; h++) {
+                for (int w = -1; w <= +1; w++) {
+                    if (gridArray[(H + (y + h)) % H][(W + (x + w)) % W]) {
+                        neighbourCount++;
+                    }
+                }
+            }
+        }else{
+            for (int h = -1; h <= +1; h++) {
+                for (int w = -1; w <= +1; w++) {
+                    try{
+                        if (gridArray[((y + h))][((x + w))]) {
+                            neighbourCount++;
+                        }
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        continue;
+                    }
                 }
             }
         }
+
         return neighbourCount;
     }
 

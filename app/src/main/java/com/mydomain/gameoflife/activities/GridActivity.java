@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-
 import com.mydomain.gameoflife.customviews.CustomGridView;
 import com.mydomain.gameoflife.R;
 import com.mydomain.gameoflife.gamealgo.GameState;
@@ -116,44 +116,11 @@ public class GridActivity extends Activity {
         super.onPause();
         doPause();
 
-//        String FILENAME = "gameoflife";
-//        boolean[][] boolArr = new boolean[2][2];
-//        boolArr[0][0] = true;
-//        boolArr[1][1] = true;
-//
-//        FileOutputStream fos = null;
-//        try {
-//            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-//            for(int i = 0; i < boolArr.length; i++){
-//                for(int j = 0; j < boolArr[0].length; j++){
-//                    fos.write(boolArr[i][j] ? 1 : 0);
-//                }
-//            }
-//            fos.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        //mCustomGridView.updateGridView();
-
-//        String FILENAME = "gameoflife";
-//        FileInputStream fis;
-//
-//        try {
-//            fis = openFileInput(FILENAME);
-//            int content;
-//            while ((content = fis.read()) != -1) {
-//
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
 
     }
 

@@ -103,7 +103,7 @@ public class InitPatternGenerator {
 
     public static void getGosperGliderGunPattern(boolean[][] gridArray, int H, int W) {
 
-        int hh = H/2;
+        int hh = H/4;
         int hw = W/2;
 
         gridArray[hh][hw] = true;
