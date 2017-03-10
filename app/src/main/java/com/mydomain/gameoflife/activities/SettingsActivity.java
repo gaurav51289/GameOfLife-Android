@@ -23,10 +23,10 @@ public class SettingsActivity extends PreferenceActivity {
     private static String GRID_SIZE_DEF = "60";
 
     private static String COLOR_BG = "color_bg";
-    private static int COLOR_BG_DEF = 20;
+    private static int COLOR_BG_DEF = -1654076;
 
     private static String COLOR_CELL = "color_cell";
-    private static int COLOR_CELL_DEF = 10;
+    private static int COLOR_CELL_DEF = -1952190;
 
 
     @Override
